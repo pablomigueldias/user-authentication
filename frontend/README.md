@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🔐 Auth System Enterprise
 
-## Getting Started
+![Status](https://img.shields.io/badge/Status-Finished-green)
+![License](https://img.shields.io/badge/License-MIT-blue)
+![Python](https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/Frontend-Next.js_16-black?logo=next.js&logoColor=white)
+![DB](https://img.shields.io/badge/Database-MongoDB-47A248?logo=mongodb&logoColor=white)
 
-First, run the development server:
+> A production-grade Authentication and User Management solution, built with modern architecture, security best practices, and scalability in mind.
+
+---
+
+## ⚠️ Important Note (Render Free Tier)
+
+**Please Read Before Testing:**
+This project is hosted on **Render's Free Tier**. The server automatically spins down after 15 minutes of inactivity.
+
+1.  **First Step:** Click on the **Backend URL** (below) to "wake up" the server.
+2.  **Wait:** It might take up to **50 seconds** for the first request to respond.
+3.  **Then:** You can proceed to the Frontend and Log in.
+
+---
+
+## 🚀 Live Demo
+
+* **Frontend (Vercel):** 
+* **Backend (Render):**  (Swagger UI)
+
+### 🔑 Test Credentials
+To facilitate testing, the system comes with a pre-configured admin account:
+* **Email:** `admin@example.com`
+* **Password:** `admin123`
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend (Python)
+* **FastAPI:** High-performance web framework for building APIs.
+* **Beanie (ODM):** Asynchronous MongoDB Object-Document Mapper.
+* **Poetry:** Professional dependency management.
+* **Security:** OAuth2 implementation with JWT (JSON Web Tokens) and Bcrypt hashing.
+
+### Frontend (TypeScript)
+* **Next.js 16:** React framework with App Router and Server Components.
+* **Tailwind CSS v4:** Utility-first CSS framework for rapid UI development.
+* **Axios:** HTTP client with interceptors for automatic token injection.
+* **React Hook Form:** Performant form validation.
+
+---
+
+## 🏗️ Architecture
+
+The project follows **Clean Architecture** principles and **Separation of Concerns**:
+
+```mermaid
+graph TD
+    User[User] -->|HTTPS| Front[Frontend Next.js]
+    Front -->|Axios + JWT| API[Backend FastAPI]
+    API -->|Validation| Pydantic[Schemas]
+    API -->|Authentication| Auth[OAuth2 Service]
+    API -->|Persistence| DB[(MongoDB Atlas)]
+```
+## Local Installation
+- Prerequisites
+- Python 3.11+
+- Node.js 20+
+- Poetry
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd backend
+# Install dependencies
+poetry install
+
+# Activate virtual env
+poetry shell
+
+# Start server
+uvicorn app.main:app --reload
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Backend Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd backend
+# Install dependencies
+poetry install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Activate virtual env
+poetry shell
 
-## Learn More
+# Start server
+uvicorn app.main:app --reload
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Frontend Setup
+```bash
+cd frontend
+# Install dependencies
+npm install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Start dev server
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Environment Variables (.env)
 
-## Deploy on Vercel
+### Backend (/backend/.env)
+```bash
+SECRET_KEY=your_super_secret_key
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+MONGO_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/auth_db
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Frontend (/frontend/.env.local)
+```bash
+NEXT_PUBLIC_API_URL=http://127.0.0.1:8000/api/v1
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Author
+Pablo Miguel Dias Ortiz - Full Stack Developer
