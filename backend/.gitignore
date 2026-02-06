@@ -1,0 +1,78 @@
+# --- LINGUAGEM: Python ---
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribuições e pacotes
+bin/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# --- AMBIENTES VIRTUAIS ---
+# Ignora ambientes virtuais padrão e customizados
+.venv/
+venv/
+ENV/
+env/
+# Se usar Poetry
+.prototyping
+.venv
+
+# --- CIÊNCIA DE DADOS & IA ---
+# Ignora datasets pesados e modelos (muito importante!)
+*.csv
+*.json
+*.parquet
+*.h5
+*.model
+*.pkl
+*.joblib
+.ipynb_checkpoints
+
+# --- CONFIGURAÇÕES & SEGURANÇA ---
+# Nunca suba chaves de API ou configurações locais
+.env
+.env.*
+!.env.example
+secrets.toml
+
+# --- IDEs & FERRAMENTAS ---
+# VS Code, PyCharm, etc.
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- TESTES & QUALIDADE ---
+.pytest_cache/
+.tox/
+.nox/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# --- SISTEMA ---
+.DS_Store
+Thumbs.db
+
+# --- FRONTEND (Next.js / React) ---
+node_modules/
+.next/
+out/
+.vercel
