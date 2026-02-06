@@ -10,7 +10,7 @@
 
 ---
 
-## ⚠️ Important Note (Render Free Tier)
+## Important Note (Render Free Tier)
 
 **Please Read Before Testing:**
 This project is hosted on **Render's Free Tier**. The server automatically spins down after 15 minutes of inactivity.
@@ -21,12 +21,12 @@ This project is hosted on **Render's Free Tier**. The server automatically spins
 
 ---
 
-## 🚀 Live Demo
+## Live Demo
 
-* **Frontend (Vercel):** 
-* **Backend (Render):**  (Swagger UI)
+* **Frontend (Vercel):** [Vercel Link](https://user-authentication-roan.vercel.app/)
+* **Backend (Render):**  [Render Link](https://user-authentication-5ebj.onrender.com)
 
-### 🔑 Test Credentials
+### Test Credentials
 To facilitate testing, the system comes with a pre-configured admin account:
 * **Email:** `admin@example.com`
 * **Password:** `admin123`
@@ -49,7 +49,7 @@ To facilitate testing, the system comes with a pre-configured admin account:
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 The project follows **Clean Architecture** principles and **Separation of Concerns**:
 
@@ -60,6 +60,43 @@ graph TD
     API -->|Validation| Pydantic[Schemas]
     API -->|Authentication| Auth[OAuth2 Service]
     API -->|Persistence| DB[(MongoDB Atlas)]
+```
+
+```mermaid
+erDiagram
+    USER {
+        ObjectId _id PK
+        string username
+        string email UK "Unique Index"
+        string password_hash
+        string role "default: 'user'"
+        datetime created_at
+        datetime updated_at
+        boolean is_active
+    }
+```
+```mermaid
+sequenceDiagram
+    participant User
+    participant Frontend (Next.js)
+    participant API (FastAPI)
+    participant DB (MongoDB)
+
+    User->>Frontend: Digita Email/Senha
+    Frontend->>API: POST /api/v1/auth/login
+    API->>DB: Busca User por Email
+    DB-->>API: Retorna User Data
+    API->>API: Verifica Hash da Senha (Bcrypt)
+    
+    alt Senha Inválida
+        API-->>Frontend: 401 Unauthorized
+        Frontend-->>User: Exibe Erro
+    else Senha Válida
+        API->>API: Gera Access Token (JWT)
+        API-->>Frontend: 200 OK {access_token, token_type}
+        Frontend->>Frontend: Armazena Token (Cookie/Storage)
+        Frontend->>User: Redireciona p/ Dashboard
+    end
 ```
 ## Local Installation
 - Prerequisites
